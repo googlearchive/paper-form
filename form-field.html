@@ -1,0 +1,43 @@
+<script>
+  modularize('form-fields', function() {
+    return {
+      kinds: [],
+      register: function(polymerElement) {
+        var kind = polymerElement.getAttribute('kind');
+        if (kind) {
+          this.kinds.push(kind);
+          polymerElement.removeAttribute('kind');
+        }
+      }
+    };
+  });
+</script>
+
+<polymer-element name="form-field" attributes="name value meta editValue error invalidated" field flex>
+<template>
+  <style>
+    :host {
+      min-width: 136px;
+      margin: 4px 14px 4px 0;
+    }
+  </style>
+</template>
+<script>
+  Polymer({
+    registerCallback: function(polymerElement) {
+      // TODO: `using` seems to force async (even when not necessary)
+      // which breaks the timeline if the using() is outside of the 
+      // Polymer invocation
+      using('form-fields', function(df) {
+        df.register(polymerElement);
+      });
+    },
+    attached: function() {
+      this.fire('add-form-field');
+    },
+    detached: function() {
+      this.fire('remove-form-field');
+    }
+  });
+</script>
+</polymer-element>
