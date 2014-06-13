@@ -20,6 +20,13 @@
     error="{{error}}"
   ></paper-input>
 </template>
+<script>
+  Polymer({
+    editValueChanged: function() {
+      this.fire('validate-form-field');
+    }
+  });
+</script>
 </polymer-element>
 
 <polymer-element name="checkbox-field" extends="form-field" kind="checkbox" noscript>

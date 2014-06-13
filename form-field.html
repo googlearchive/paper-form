@@ -13,7 +13,7 @@
   });
 </script>
 
-<polymer-element name="form-field" attributes="name value meta editValue error invalidated" field flex>
+<polymer-element name="form-field" attributes="name value meta editValue error invalidated validator" field flex>
 <template>
   <style>
     :host {
@@ -24,6 +24,7 @@
 </template>
 <script>
   Polymer({
+    validator: '',
     registerCallback: function(polymerElement) {
       // TODO: `using` seems to force async (even when not necessary)
       // which breaks the timeline if the using() is outside of the 
@@ -41,3 +42,4 @@
   });
 </script>
 </polymer-element>
+
