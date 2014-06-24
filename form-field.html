@@ -1,5 +1,5 @@
 <script>
-  modularize('form-fields', function() {
+  modularize('form-field', function() {
     return {
       kinds: [],
       register: function(polymerElement) {
@@ -13,7 +13,7 @@
   });
 </script>
 
-<polymer-element name="form-field" attributes="name value meta editValue error invalidated validator" field flex>
+<polymer-element name="form-field" attributes="name value meta editValue errorText validator invalidated" field>
 <template>
   <style>
     :host {
@@ -25,11 +25,15 @@
 <script>
   Polymer({
     validator: '',
+    errorText: '',
     registerCallback: function(polymerElement) {
       // TODO: `using` seems to force async (even when not necessary)
       // which breaks the timeline if the using() is outside of the 
       // Polymer invocation
-      using('form-fields', function(df) {
+      // This happens because `using` calls `whenImportsReady` which
+      // requires the document to be in ready-state, and this import
+      // document is in loading-state when parsing the enclosing script tag
+      using('form-field', function(df) {
         df.register(polymerElement);
       });
     },
@@ -43,3 +47,35 @@
 </script>
 </polymer-element>
 
+<polymer-element name="poly-field" extends="form-field" attributes="kind" horizontal layout>
+<template>
+</template>
+<script>
+  Polymer({
+    kind: 'input-field',
+    attached: function() {
+    },
+    detached: function() {
+    },
+    ready: function() {
+      if (this.kind === this.__proto__.kind) {
+        this.kindChanged();
+      }
+      if (!this.name) {
+        this.name = "Field Name";
+      }
+    },
+    kindChanged: function() {
+      function makeFacade(element) {
+        var facade = ' ';
+        element._publishNames.forEach(function(n) {
+          facade += n + '="{{' + n + '}}" ';
+        });
+        return facade;
+      }
+      var facade = makeFacade(this);
+      this.injectBoundHTML('<' + this.kind + facade + ' flex>', this.shadowRoot);
+    }
+  });
+</script>
+</polymer-element>

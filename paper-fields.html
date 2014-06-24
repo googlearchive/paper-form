@@ -17,7 +17,7 @@
     invalid="{{invalidated}}"
     inputValue="{{editValue}}"
     value="{{value}}"
-    error="{{error}}"
+    error="{{errorText}}"
   ></paper-input>
 </template>
 <script>
@@ -76,7 +76,6 @@
   </core-menu-button>
 </template>
 </polymer-element>
-
 
 <polymer-element name="ssn-field" extends="form-field" kind="ssn" layout horizontal center noscript on-keypress="{{keyPress}}">
 <template>

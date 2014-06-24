@@ -4,12 +4,16 @@
   html /deep/ [novanish] {
     min-height: 8px;
   }
+  design-frame /deep/ paper-row {
+    border: 1px dotted rgba(240, 240, 240, 0.5);
+    border-radius: 8px;
+    margin: -1px -1px;
+  }
 </style>
 
 <polymer-element name="paper-group" segment horizontal layout wrap novanish noscript></polymer-element>
 
 <polymer-element name="paper-row" horizontal layout center wrap novanish noscript></polymer-element>
-
 
 <polymer-element name="field-validator" attributes="value editValue errorText invalidated" extends="core-meta" type="validator" id="numchars">
 <script>
