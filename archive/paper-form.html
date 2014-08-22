@@ -1,0 +1,81 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<style>
+  html /deep/ [novanish] {
+    min-height: 8px;
+  }
+  design-frame /deep/ paper-row {
+    border: 1px dotted rgba(240, 240, 240, 0.5);
+    border-radius: 8px;
+    margin: -1px -1px;
+  }
+</style>
+
+<polymer-element name="paper-group" segment horizontal layout wrap novanish noscript></polymer-element>
+
+<polymer-element name="paper-row" horizontal layout center wrap novanish noscript></polymer-element>
+
+<polymer-element name="field-validator" attributes="value editValue errorText invalidated" extends="core-meta" type="validator" id="numchars">
+<script>
+  Polymer({
+    errorText: "Failed to validate",
+    validate: function(field) {
+      field.error = this.errorText;
+      field.invalidated = field.value && field.value.length < 5;
+    }
+  });
+</script>
+</polymer-element>
+
+<polymer-element name="paper-form" vertical layout>
+<script>
+  Polymer({
+    eventDelegates: {
+      'add-form-field': 'addField',
+      'remove-form-field': 'removeField',
+      'validate-form-field': 'validateFieldEvent'
+    },
+    created: function() {
+      this.fields = [];
+      this.validators = document.createElement('field-validator');
+    },
+    addField: function(e) {
+      this.fields.push(e.target);
+    },
+    removeField: function(e) {
+      var i = this.fields.indexOf(e.target);
+      if (i >= 0) {
+        this.fields.splice(i, 1);
+      }
+    },
+    dump: function() {
+      var data = {};
+      this.fields.forEach(function(f) {
+        data[f.name] = f.value;
+      }, this);
+      return data;
+    },
+    validate: function() {
+      var valid = this.fields.every(function(f) {
+        this.validateField(f);
+        return !f.invalidated;        
+      }, this);
+      return valid;
+    },
+    validateField: function(field) {
+      if (field.validator) {
+        var validator = this.validators.byId(field.validator);
+        console.log('validator go', validator); 
+        if (validator) {
+          validator.validate(field);
+        }
+      }
+    },
+    validateFieldEvent: function(event) {
+      event.stopPropagation();
+      this.validateField(event.target);
+    }
+  });
+</script>
+</polymer-element>
+
