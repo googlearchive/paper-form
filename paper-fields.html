@@ -18,6 +18,7 @@
     inputValue="{{editValue}}"
     value="{{value}}"
     error="{{errorText}}"
+    validateImmediately="false"
   ></paper-input>
 </template>
 <script>
@@ -97,7 +98,7 @@
     }
   </style>
   <span>{{name}}</span>
-  <paper-input three-digits value="{{partA}}"></paper-input> - <paper-input two-digits value="{{partB}}"></paper-input> - <paper-input four-digits value="{{partC}}"></paper-input>  
+  <paper-input three-digits maxlength="3" value="{{partA}}"></paper-input> - <paper-input two-digits maxlength="2" value="{{partB}}"></paper-input> - <paper-input four-digits maxlength="4" value="{{partC}}"></paper-input>  
 </template>
 <script>
   Polymer({

@@ -47,7 +47,7 @@
       
         <segment>
           <paper-row>
-            <input-field name="Order Name" value="{{item.orderId}}" editValue="{{orderId}}" invalidated="{{orderId | validateOrderId}}" error="Must be at least five characters long"></input-field>
+            <input-field name="Order Name" value="{{item.orderId}}" editValue="{{orderId}}" xinvalidated="{{orderId | validateOrderId}}" error="Must be at least five characters long"></input-field>
           </paper-row>
           <paper-row>
             <ssn-field name="SSN" value="{{item.ssn}}"></ssn-field>
@@ -56,7 +56,7 @@
         
         <segment>
           <paper-row>
-            <input-field name="Flan Flavor" value="{{item.flavor}}" editValue="{{flavor}}" invalidated="{{flavor | validateFlavor}}" error="Any flavor is fine, as long as it contains chocolate"></input-field>
+            <input-field name="Flan Flavor" value="{{item.flavor}}" editValue="{{flavor}}" xinvalidated="{{flavor | validateFlavor}}" error="Any flavor is fine, as long as it contains chocolate"></input-field>
             <slider-field name="Viscosity" value="{{item.viscosity}}"></slider-field>
           </paper-row>
           
