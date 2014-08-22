@@ -4,8 +4,7 @@
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../paper-slider/paper-slider.html">
-<link rel="import" href="../paper-menu-button/paper-menu-button.html">
-<link rel="import" href="../core-menu-button/core-menu-button.html">
+<link rel="import" href="../core-dropdown/core-dropdown.html">
 <link rel="import" href="form-field.html">
   
 <polymer-element name="input-field" extends="form-field" kind="input" layout horizontal center noscript>
@@ -13,7 +12,7 @@
   <paper-input 
     flex 
     floatinglabel 
-    label="{{name}}"
+    label="{{label || name}}"
     invalid="{{invalidated}}"
     inputValue="{{editValue}}"
     value="{{value}}"
@@ -70,11 +69,16 @@
     :host {
       margin-top: 8px;
     }
+    core-dropdown {
+      background-color: #eee;
+    }
+    core-dropdown::shadow #menu {
+      background-color: #eee;
+    }
   </style>
-  <span style="vertical-align: middle;">{{name}}</span>&nbsp;
-  <core-menu-button selected="{{value}}" icon="arrow-drop-down">
+  <core-dropdown label="{{label || name}}" selected="{{value}}" valueattr="textContent">
     <content></content>
-  </core-menu-button>
+  </core-dropdown>
 </template>
 </polymer-element>
 

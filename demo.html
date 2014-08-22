@@ -47,30 +47,30 @@
       
         <segment>
           <paper-row>
-            <input-field name="Order Name" value="{{item.orderId}}" editValue="{{orderId}}" xinvalidated="{{orderId | validateOrderId}}" error="Must be at least five characters long"></input-field>
+            <input-field name="orderId" label="Order Name" value="{{item.orderId}}" editValue="{{orderId}}" xinvalidated="{{orderId | validateOrderId}}" error="Must be at least five characters long"></input-field>
           </paper-row>
           <paper-row>
-            <ssn-field name="SSN" value="{{item.ssn}}"></ssn-field>
+            <ssn-field name="ssn" label="SSN" value="{{item.ssn}}"></ssn-field>
           </paper-row>
         </segment>
         
         <segment>
           <paper-row>
-            <input-field name="Flan Flavor" value="{{item.flavor}}" editValue="{{flavor}}" xinvalidated="{{flavor | validateFlavor}}" error="Any flavor is fine, as long as it contains chocolate"></input-field>
+            <input-field name="flavor" label="Flan Flavor" value="{{item.flavor}}" editValue="{{flavor}}" xinvalidated="{{flavor | validateFlavor}}" error="Any flavor is fine, as long as it contains chocolate"></input-field>
             <slider-field name="Viscosity" value="{{item.viscosity}}"></slider-field>
           </paper-row>
           
           <paper-row>
-            <toggle-field name="Whip Cream" value="{{item.whipCream}}"></toggle-field>  
-            <checkbox-field name="Egg Cream" value="{{item.eggCream}}"></checkbox-field>  
-            <toggle-field name="Heavy Cream" value="{{item.heavyCream}}"></toggle-field>
-            <checkbox-field name="Sweet Cream" value="{{item.sweetCream}}"></checkbox-field>
+            <toggle-field name="whipCream" label="Whip Cream" value="{{item.whipCream}}"></toggle-field>  
+            <checkbox-field name="eggCream" label="Egg Cream" value="{{item.eggCream}}"></checkbox-field>  
+            <toggle-field name="heavyCream" label="Heavy Cream" value="{{item.heavyCream}}"></toggle-field>
+            <checkbox-field name="sweetCream" label="Sweet Cream" value="{{item.sweetCream}}"></checkbox-field>
           </paper-row>
         </segment>
         
         <segment>
           <paper-row>
-            <radio-field name="Shape" value="{{item.shape}}">
+            <radio-field name="shape" label="Shape" value="{{item.shape}}">
               <paper-radio-button label="Square" active></paper-radio-button>
               <paper-radio-button label="Circle"></paper-radio-button>
               <paper-radio-button label="Tubular"></paper-radio-button>
@@ -78,7 +78,7 @@
             </radio-field>  
           </paper-row>
   
-          <dropdown-field one-column name="Extra Layers ({{item.layers || 0}})" value="{{item.layers}}">
+          <dropdown-field one-column name="layers" label="Extra Layers" value="{{item.layers}}">
             <core-item>Single Layer</core-item>
             <core-item>One Extra Layer</core-item>
             <core-item>Two Extra Layers</core-item>
