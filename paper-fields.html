@@ -4,7 +4,8 @@
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../paper-slider/paper-slider.html">
-<link rel="import" href="../core-dropdown/core-dropdown.html">
+<link rel="import" href="../paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../core-menu-button/core-menu-button.html">
 <link rel="import" href="form-field.html">
   
 <polymer-element name="input-field" extends="form-field" kind="input" layout horizontal center noscript>
@@ -12,12 +13,11 @@
   <paper-input 
     flex 
     floatinglabel 
-    label="{{label || name}}"
+    label="{{name}}"
     invalid="{{invalidated}}"
     inputValue="{{editValue}}"
     value="{{value}}"
     error="{{errorText}}"
-    validateImmediately="false"
   ></paper-input>
 </template>
 <script>
@@ -69,16 +69,11 @@
     :host {
       margin-top: 8px;
     }
-    core-dropdown {
-      background-color: #eee;
-    }
-    core-dropdown::shadow #menu {
-      background-color: #eee;
-    }
   </style>
-  <core-dropdown label="{{label || name}}" selected="{{value}}" valueattr="textContent">
+  <span style="vertical-align: middle;">{{name}}</span>&nbsp;
+  <core-menu-button selected="{{value}}" icon="arrow-drop-down">
     <content></content>
-  </core-dropdown>
+  </core-menu-button>
 </template>
 </polymer-element>
 
@@ -101,8 +96,8 @@
       margin-right: 12px;
     }
   </style>
-  <span>{{label || name}}</span>
-  <paper-input three-digits maxlength="3" value="{{partA}}"></paper-input> - <paper-input two-digits maxlength="2" value="{{partB}}"></paper-input> - <paper-input four-digits maxlength="4" value="{{partC}}"></paper-input>  
+  <span>{{name}}</span>
+  <paper-input three-digits value="{{partA}}"></paper-input> - <paper-input two-digits value="{{partB}}"></paper-input> - <paper-input four-digits value="{{partC}}"></paper-input>  
 </template>
 <script>
   Polymer({
